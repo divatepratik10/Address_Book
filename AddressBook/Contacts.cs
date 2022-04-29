@@ -8,6 +8,7 @@ namespace AddressBook
 {
     internal class Contacts
     {
+        public string AddressBookName;
         public string FName;
         public string LName;
         public string Address;
@@ -22,8 +23,9 @@ namespace AddressBook
         {
 
         }
-        public Contacts(string FName, string LName, string Address, string City, string State, int ZIP, long Phone, string Email)
+        public Contacts(string AddressBookName, string FName, string LName, string Address, string City, string State, int ZIP, long Phone, string Email)
         {
+            this.AddressBookName = AddressBookName;
             this.FName = FName;
             this.LName = LName;
             this.Address = Address;
@@ -34,7 +36,7 @@ namespace AddressBook
             this.Email = Email;
         }
 
-        public void AddContact()
+        public void AddContact(string AddBook)
         {
             Console.WriteLine("Enter First Name : ");
             string Fname = Console.ReadLine();
@@ -49,12 +51,12 @@ namespace AddressBook
             Console.WriteLine("Enter ZIP code : ");
             int ZIP = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Mobile Number : ");
-            long Phone = Convert.ToInt32(Console.ReadLine());
+            int Phone = (int)Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter Email ID : ");
             string Email = Console.ReadLine();
-            Contacts OBJcontacts = new Contacts(Fname,Lname,Address,City,State,ZIP,Phone,Email);
+            Contacts OBJcontacts = new Contacts(AddBook,Fname,Lname,Address,City,State,ZIP,Phone,Email);
             ContactList.Add(OBJcontacts);
-            Console.WriteLine("Contact is Added.");
+            Console.WriteLine("Contact is Added to {0} Address-Book.",AddBook);
         }
     }
 
