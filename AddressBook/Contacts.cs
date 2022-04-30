@@ -8,7 +8,7 @@ namespace AddressBook
 {
     internal class Contacts
     {
-        public string AddressBookName;
+        //public string AddressBookName;
         public string FName;
         public string LName;
         public string Address;
@@ -19,13 +19,13 @@ namespace AddressBook
         public string Email;
         public List<Contacts> ContactList = new List<Contacts>();
 
-        public Contacts()
+        internal Contacts()
         {
 
         }
-        public Contacts(string AddressBookName, string FName, string LName, string Address, string City, string State, int ZIP, long Phone, string Email)
+        public Contacts(string FName, string LName, string Address, string City, string State, int ZIP, long Phone, string Email)
         {
-            this.AddressBookName = AddressBookName;
+            //this.AddressBookName = AddressBookName;
             this.FName = FName;
             this.LName = LName;
             this.Address = Address;
@@ -36,12 +36,12 @@ namespace AddressBook
             this.Email = Email;
         }
 
-        public void AddContact(string AddBook)
+        public void AddContact()
         {
             Console.WriteLine("Enter First Name : ");
-            string Fname = Console.ReadLine();
+            string FName = Console.ReadLine();
             Console.WriteLine("Enter Last Name : ");
-            string Lname = Console.ReadLine();
+            string LName = Console.ReadLine();
             Console.WriteLine("Enter Address : ");
             string Address = Console.ReadLine();
             Console.WriteLine("Enter City : ");
@@ -54,9 +54,42 @@ namespace AddressBook
             int Phone = (int)Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter Email ID : ");
             string Email = Console.ReadLine();
-            Contacts OBJcontacts = new Contacts(AddBook,Fname,Lname,Address,City,State,ZIP,Phone,Email);
+            Contacts OBJcontacts = new Contacts(FName,LName,Address,City,State,ZIP,Phone,Email);
             ContactList.Add(OBJcontacts);
-            Console.WriteLine("Contact is Added to {0} Address-Book.",AddBook);
+            Console.WriteLine("Contact is Added to Address-Book.");
+        }
+
+        public void EditContact()
+        {
+            Console.WriteLine("Enter First Name");
+            string firstname = Console.ReadLine();
+            Console.WriteLine("Enter Last Name");
+            string lastname = Console.ReadLine();
+            bool personFound = false;
+            foreach (Contacts item in ContactList)
+            {
+                if ((((item.FName).ToLower() == FName.ToLower()) && ((item.LName).ToLower() == LName.ToLower())))
+                {
+                    Console.WriteLine("Enter new Address");
+                    item.Address = Console.ReadLine();
+                    Console.WriteLine("Enter new City");
+                    item.City = Console.ReadLine();
+                    Console.WriteLine("Enter new State");
+                    item.State = Console.ReadLine();
+                    Console.WriteLine("Enter new ZIP");
+                    item.ZIP = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter new Phone Number");
+                    item.Phone = (int)Convert.ToInt64(Console.ReadLine());
+                    Console.WriteLine("Enter new Email");
+                    item.Email = Console.ReadLine();
+                    personFound = true;
+                    Console.WriteLine("Details have been updated.");
+                }
+            }
+            if (personFound == false)
+            {
+                Console.WriteLine("Person not found");
+            }
         }
     }
 

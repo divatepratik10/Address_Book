@@ -8,15 +8,27 @@ namespace AddressBook
 {
     internal class AddBookMain
     {
-        static void Main()
+        static void Main(string[] args)
         {
             Console.WriteLine("WELCOME TO ADDRESS-BOOK PROGRAMME.");
-            Console.WriteLine("Enter Address Book name : ");
-            string BookName = Console.ReadLine();
+            Console.WriteLine("What to do ?\nPress 1 : Add Contact\nPress 2 : Edit Contact");
+            int press = Convert.ToInt32(Console.ReadLine());
             Contacts contacts = new Contacts();
-            contacts.AddContact(BookName);
-            Console.ReadLine();      
+            switch (press)
+            {
+                case 1:
+                    contacts.AddContact();
+                    //contacts.EditContact();
+                    break;
+
+                case 2:
+                    contacts.EditContact();
+                    break;
+            }
+            Console.ReadLine();
+
         }
-        
+
     }
 }
+
