@@ -68,7 +68,7 @@ namespace AddressBook
             bool personFound = false;
             foreach (Contacts item in ContactList)
             {
-                if ((((item.FName).ToLower() == FName.ToLower()) && ((item.LName).ToLower() == LName.ToLower())))
+                if ((((item.FName).ToLower() == firstname.ToLower()) && ((item.LName).ToLower() == lastname.ToLower())))
                 {
                     Console.WriteLine("Enter new Address");
                     item.Address = Console.ReadLine();
@@ -77,7 +77,7 @@ namespace AddressBook
                     Console.WriteLine("Enter new State");
                     item.State = Console.ReadLine();
                     Console.WriteLine("Enter new ZIP");
-                    item.ZIP = Convert.ToInt32(Console.ReadLine());
+                    item.ZIP = (int)Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Enter new Phone Number");
                     item.Phone = (int)Convert.ToInt64(Console.ReadLine());
                     Console.WriteLine("Enter new Email");
@@ -86,6 +86,30 @@ namespace AddressBook
                     Console.WriteLine("Details have been updated.");
                 }
             }
+            if (personFound == false)
+            {
+                Console.WriteLine("Person not found");
+            }
+        }
+
+        public void DeleteContact()
+        {
+            Console.WriteLine("Enter First Name");
+            string fName = Console.ReadLine();
+            Console.WriteLine("Enter Second Name");
+            string sName = Console.ReadLine();
+            bool personFound = false;
+            Contacts personToDelete = new Contacts();
+            foreach (Contacts item in ContactList)
+            {
+                if ((((item.FName).ToLower() == fName.ToLower()) && ((item.LName).ToLower() == sName.ToLower())))
+                {
+                    personToDelete = item;
+                    personFound = true;
+                    Console.WriteLine("Person has been Removed from Address-Book Contacts.");
+                }
+            }
+            ContactList.Remove(personToDelete);
             if (personFound == false)
             {
                 Console.WriteLine("Person not found");
