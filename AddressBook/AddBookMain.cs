@@ -17,10 +17,15 @@ namespace AddressBook
             switch (press)
             {
                 case 1:
-                    contacts.AddContact();
-                    contacts.EditContact();
-                    contacts.DeleteContact();
-                    contacts.EditContact();
+                    Console.WriteLine("Enter how many contacts you want to add in the Address-Book : ");
+                    int HowMany = Convert.ToInt32(Console.ReadLine());
+                    for(int i = 1; i <= HowMany; i++)
+                    {
+                        contacts.AddContact();
+                    }
+                    //contacts.EditContact();
+                    //contacts.DeleteContact();
+                    //contacts.EditContact();
                     break;
 
                 case 2:
